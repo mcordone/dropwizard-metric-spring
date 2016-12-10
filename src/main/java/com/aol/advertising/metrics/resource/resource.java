@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
  * Created by jcordones13 on 11/13/16.
  */
 @Path("metrics")
-public class resource {
+public class Resource {
 
     @Autowired
     private Service service;
