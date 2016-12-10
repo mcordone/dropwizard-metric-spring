@@ -1,3 +1,0 @@
-2016-12-07 22:05:55,700 854  [Test worker] INFO  c.a.a.metrics.service.Service - reporting meter metrics....
-2016-12-07 23:16:58,921 834  [Test worker] INFO  c.a.a.metrics.service.Service - reporting meter metrics - port: 8125
-2016-12-07 23:17:11,624 1032 [Test worker] INFO  c.a.a.metrics.service.Service - reporting meter metrics - port: 8125
