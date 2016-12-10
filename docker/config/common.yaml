@@ -1,0 +1,10 @@
+exec: ["catalina.sh", "run"]
+
+data_sources:
+  - defaults
+  - file
+  - environment_json
+  - environment
+
+template_sources:
+  - file
