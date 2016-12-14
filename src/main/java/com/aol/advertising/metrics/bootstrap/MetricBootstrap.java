@@ -51,7 +51,7 @@ public class MetricBootstrap extends MetricsConfigurerAdapter {
 
         switch (mConfig.getReporterType()) {
             case DATADOG:
-                logger.info("--------------- DATADOG ---------------");
+                logger.info("--------------- DATADOG --------------- ");
                 //expansions
                 EnumSet expansions = EnumSet.of(DatadogReporter.Expansion.COUNT,
                         DatadogReporter.Expansion.RATE_1_MINUTE,
@@ -64,9 +64,9 @@ public class MetricBootstrap extends MetricsConfigurerAdapter {
                         DatadogReporter.Expansion.P999);
 
                 //dataDog transport
-                HttpTransport httpTransport = new HttpTransport.Builder()
+                /*HttpTransport httpTransport = new HttpTransport.Builder()
                         .withApiKey(mConfig.getApiKey())
-                        .build();
+                        .build();*/
 
                 UdpTransport transport = new UdpTransport.Builder().build();
 

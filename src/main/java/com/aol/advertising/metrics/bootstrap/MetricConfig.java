@@ -24,8 +24,6 @@ import java.util.List;
 public class MetricConfig {
     private ReporterType reporterType;
 
-    private String destination;
-
     private List<String> tags;
 
     private String apiKey;
@@ -46,22 +44,6 @@ public class MetricConfig {
      */
     public void setReporterType(final ReporterType reporterType) {
         this.reporterType = reporterType;
-    }
-
-    /**
-     * [getDestination description]
-     * @return String
-     */
-    public String getDestination() {
-        return destination;
-    }
-
-    /**
-     * [setDestination description]
-     * @param destination String
-     */
-    public void setDestination(final String destination) {
-        this.destination = destination;
     }
 
     /**

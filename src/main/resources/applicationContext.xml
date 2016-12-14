@@ -18,7 +18,6 @@
 
     <bean id="metricsConfig" class="com.aol.advertising.metrics.bootstrap.MetricConfig">
         <property name="reporterType" value="${metrics.reporterType}"/>
-        <property name="destination" value="${metrics.destination}"/>
         <property name="tags" value="${metrics.tags}"/>
         <property name="apiKey" value="${metrics.apiKey}"/>
         <property name="environment" value="${metrics.environment}"/>
