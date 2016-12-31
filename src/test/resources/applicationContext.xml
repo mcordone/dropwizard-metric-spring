@@ -16,6 +16,8 @@
         <property name="tags" value="${metrics.tags}"/>
         <property name="apiKey" value="${metrics.apiKey}"/>
         <property name="environment" value="${metrics.environment}"/>
+        <property name="platform" value="${metrics.platform}"/>
+        <property name="metricProtocol" value="${metrics.protocol}"/>
     </bean>
 
 </beans>

@@ -8,7 +8,9 @@ application.properties.erb:
   config:
     metrics_reporterType: "DATADOG"
     metrics_environment: "DEV"
-    metrics_apiKey: "your-key"
+    metrics_apiKey: "cb97026e8a2bc9827669c8a2a5bcc582"
+    metrics_platform: "LOCAL"
+    metrics_protocol: "UDP"
 
 logbackConfig.groovy.erb:
   target: /var/lib/application/logbackConfig.groovy

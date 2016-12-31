@@ -30,6 +30,10 @@ public class MetricConfig {
 
     private Environment environment;
 
+    private Platform platform;
+
+    private MetricProtocol metricProtocol;
+
     /**
      * [getReporterType description]
      * @return ReporterType
@@ -78,5 +82,21 @@ public class MetricConfig {
 
     public void setEnvironment(Environment environment) {
         this.environment = environment;
+    }
+
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
+    public MetricProtocol getMetricProtocol() {
+        return metricProtocol;
+    }
+
+    public void setMetricProtocol(MetricProtocol metricProtocol) {
+        this.metricProtocol = metricProtocol;
     }
 }

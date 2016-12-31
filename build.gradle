@@ -125,7 +125,7 @@ task pushImage(dependsOn: 'tagImage') << {
 task runImage(dependsOn: 'buildImage') << {
     exec{
         workingDir "docker"
-        commandLine "docker", "run", "-e", "environment=${env_}", "-p", "8080:8080", "${buildImage.buildName()}"
+        commandLine "docker", "run", "-e", "environment=${env_}", "-p", "8080:8080", "-p", "8125:8125", "--link", "dogstatsd:dogstatsd", "${buildImage.buildName()}"
     }
 }
 

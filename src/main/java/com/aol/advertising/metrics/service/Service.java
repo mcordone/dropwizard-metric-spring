@@ -29,18 +29,17 @@ import org.springframework.stereotype.Component;
 public class Service {
     private static final Logger logger = LoggerFactory.getLogger(Service.class);
 
-    @Metered(name = "codahale.metric.spring.meter.miguel")
+    @Metered(name = "codahale.metric.meter")
     public void reportMeterMetrics(){
-        logger.info("reporting meter metrics...");
-        logger.info("------------------ " + System.getenv("DOGSTATSD_PORT_8125_UDP_PORT"));
+        logger.info("reporting meter metrics... ADDR: " + System.getenv("DOGSTATSD_PORT_8125_UDP_ADDR") + " PORT: " + System.getenv("DOGSTATSD_PORT_8125_UDP_PORT"));
     }
 
-    @Timed(name = "codahale.metric.spring.timer.miguel")
+    @Timed(name = "codahale.metric.timer")
     public void reportTimerMetrics(){
         logger.info("reporting timer metrics...");
     }
 
-   @Counted(name = "codahale.metric.spring.counter.miguel")
+   @Counted(name = "codahale.metric.counter")
     public void reportCounterMetrics(){
         logger.info("reporting counter metrics...");
     }

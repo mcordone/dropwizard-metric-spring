@@ -64,30 +64,33 @@ public class MetricBootstrap extends MetricsConfigurerAdapter {
                         DatadogReporter.Expansion.P999);
 
                 //dataDog transport
-                /*HttpTransport httpTransport = new HttpTransport.Builder()
-                        .withApiKey(mConfig.getApiKey())
-                        .build();*/
+                Transport transport = createTransport();
 
-                UdpTransport transport = new UdpTransport.Builder().build();
+                DatadogReporter.Builder DDReporterBuilder = DatadogReporter.forRegistry(metricRegistry)
+                        .withTransport(transport)
+                        .withExpansions(expansions)
+                        .withTags(mConfig.getTags())
+                        .convertRatesTo(TimeUnit.SECONDS)
+                        .convertDurationsTo(TimeUnit.MILLISECONDS);
 
+                //For AWS only
                 try {
-                    DatadogReporter.forRegistry(metricRegistry)
-                            .withTransport(transport)
-                            .withExpansions(expansions)
-                            .withTags(mConfig.getTags())
-                            .convertRatesTo(TimeUnit.SECONDS)
-                            .convertDurationsTo(TimeUnit.MILLISECONDS)
-                            .withEC2Host()
-                            .build()
-                            .start(STAT_FREQ, TimeUnit.MINUTES);
+                    Platform platform = mConfig.getPlatform();
+                    if(platform == Platform.AWS)
+                        DDReporterBuilder.withEC2Host();
+
                 } catch (IOException e) {
-                    e.printStackTrace();
                     logger.error(e.getMessage(), e);
                 }
+
+                //build and start DD reporter
+                DDReporterBuilder.build()
+                        .start(STAT_FREQ, TimeUnit.MINUTES);
 
                 break;
 
             case CONSOLE:
+                logger.info("--------------- CONSOLE --------------- ");
                 ConsoleReporter.forRegistry(metricRegistry)
                         .convertRatesTo(TimeUnit.SECONDS)
                         .convertDurationsTo(TimeUnit.MILLISECONDS)
@@ -95,5 +98,30 @@ public class MetricBootstrap extends MetricsConfigurerAdapter {
                 break;
             default:
         }
+    }
+
+    /**
+     *
+     * @return either UDP or HTTP Transport
+     */
+    private Transport createTransport(){
+        Transport transport = null;
+
+        switch (mConfig.getMetricProtocol()) {
+            case UDP:
+                transport = new UdpTransport.Builder()
+                        .withStatsdHost(System.getenv("DOGSTATSD_PORT_8125_UDP_ADDR"))
+                        .withPort(Integer.valueOf(System.getenv("DOGSTATSD_PORT_8125_UDP_PORT")))
+                        .build();
+                break;
+
+            case HTTP:
+                transport = new HttpTransport.Builder()
+                        .withApiKey(mConfig.getApiKey())
+                        .build();
+                break;
+        }
+
+        return transport;
     }
 }
