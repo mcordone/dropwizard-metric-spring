@@ -1,0 +1,19 @@
+server.xml.erb:
+  target: /usr/local/tomcat/conf/server.xml
+  config:
+    port: 8080
+
+application.properties.erb:
+  target: /var/lib/application/application.properties
+  config:
+    metrics_reporterType: "DATADOG"
+    metrics_environment: "QAI"
+    metrics_apiKey: "your_datadog_key"
+    metrics_platform: "AWS"
+    metrics_protocol: "UDP"
+
+logbackConfig.groovy.erb:
+  target: /var/lib/application/logbackConfig.groovy
+
+catalina.properties.erb:
+  target: /usr/local/tomcat/conf/catalina.properties
